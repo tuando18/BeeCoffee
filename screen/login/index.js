@@ -69,7 +69,7 @@ const Login = ({ navigation }) => {
       >
         <View style={styles.innerContainer}>
           <Image style={styles.anh} source={logo} />
-          <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Welcome to Coffee shope</Text>
+          <Text style={{ fontSize: 25, fontWeight: 'bold' }}>Welcome to Bee Cooffee</Text> 
           <Text style={{ fontSize: 19, marginTop: 10, marginBottom: 30 }}>Login to continue</Text>
 
           <TextInput
