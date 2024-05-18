@@ -4,10 +4,11 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from './style';
 import avatar1 from '../../assets/avt.jpeg';
 import { useRoute } from '@react-navigation/native';
+import apiUrl from '../../apiUrl';
 
 const Home = ({ navigation }) => {
-  const url_Category = 'http://192.168.1.9:3000/category';
-  const url_Product = 'http://192.168.1.9:3000/products';
+  const url_Category = 'http://'+apiUrl.tuan+':3000/category'; // viết api url bằng cách này 
+  const url_Product = 'http://'+apiUrl.tuan+':3000/products';
 
   const route = useRoute();
   const nameUserSend = route.params?.nameUserSend || '';

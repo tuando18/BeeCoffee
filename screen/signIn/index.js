@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
 
 import logo from '../../assets/logo.png';
-
+import apiUrl from '../../apiUrl';
 const Register = ({ navigation }) => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ const Register = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const registerUser = (userData) => {
-    fetch('http://192.168.1.9:3000/users', {
+    fetch('http://'+apiUrl.tuan+':3000/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, KeyboardAvoidingView, Platfor
 import styles from './style';
 
 import logo from '../../assets/logo.png';
+import apiUrl from '../../apiUrl';
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ const Login = ({ navigation }) => {
   }, []);
 
   const getDatafromAPI = () => {
-    fetch('http://192.168.1.9:3000/users')
+    fetch('http://'+apiUrl.tuan+':3000/users')
       .then(response => response.json())
       .then(data => {
         const users = data.map(user => user.username);
