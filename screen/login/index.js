@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
   }, []);
 
   const getDatafromAPI = () => {
-    fetch("http://" + apiUrl.tuan + ":3000/users")
+    fetch("http://" + apiUrl.tu + ":3000/users")
       .then((response) => response.json())
       .then((data) => {
         const users = data.map((user) => user.username);

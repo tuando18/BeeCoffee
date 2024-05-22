@@ -73,7 +73,7 @@
       "nameProduct": "cappuccino cream",
       "description": "Smooth and creamy cappuccino",
       "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
-      "isFavorite": true,
+      "isFavorite": false,
       "category": 1,
       "id": "1"
     },
@@ -181,6 +181,33 @@
       "nameProduct": "cappuccino catalog",
       "description": "with cocounut",
       "image": "https://www.lottemart.vn/media/catalog/product/cache/0x0/8/9/8936077512295-1.jpg.webp",
+      "quantity": 1
+    },
+    {
+      "id": "6e46",
+      "size": "small",
+      "price": 4.5,
+      "nameProduct": "cappuccino cream",
+      "description": "Smooth and creamy cappuccino",
+      "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+      "quantity": 1
+    },
+    {
+      "id": "4ce0",
+      "size": "small",
+      "price": 4.5,
+      "nameProduct": "cappuccino cream",
+      "description": "Smooth and creamy cappuccino",
+      "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+      "quantity": 1
+    },
+    {
+      "id": "c2d2",
+      "size": "small",
+      "price": 4.5,
+      "nameProduct": "cappuccino cream",
+      "description": "Smooth and creamy cappuccino",
+      "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
       "quantity": 1
     }
   ],
