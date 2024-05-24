@@ -15,8 +15,8 @@ import { useRoute } from "@react-navigation/native";
 import apiUrl from "../../apiUrl";
 
 const Home = ({ navigation }) => {
-  const url_Category = "http://" + apiUrl.tu + ":3000/category";
-  const url_Product = "http://" + apiUrl.tu + ":3000/products";
+  const url_Category = "http://" + apiUrl.tuan + ":3000/category";
+  const url_Product = "http://" + apiUrl.tuan + ":3000/products";
 
   const route = useRoute();
   const nameUserSend = route.params?.nameUserSend || "";
@@ -25,6 +25,8 @@ const Home = ({ navigation }) => {
   const [category, setCategory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(1);
   const [flatListKey, setFlatListKey] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
@@ -41,10 +43,21 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     setFlatListKey((prevKey) => prevKey + 1);
-    getDataProductfromAPI(category);
-    getDataCategoryfromAPI();
     getDataProductfromAPI(selectedCategory);
-  }, []);
+    getDataCategoryfromAPI();
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    if (searchQuery === '') {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) =>
+          product.nameProduct.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    }
+  }, [searchQuery, products]);
 
   const getDataCategoryfromAPI = () => {
     fetch(url_Category)
@@ -54,11 +67,13 @@ const Home = ({ navigation }) => {
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
+
   const getDataProductfromAPI = (category) => {
     fetch(url_Product + "?category=" + category)
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
+        setFilteredProducts(data);
       })
       .catch((error) => console.error("Error fetching data:", error));
   };
@@ -89,7 +104,6 @@ const Home = ({ navigation }) => {
             id: item.id,
             category: item.category,
           });
-          console.log("chuyuyền vào pro :", item.isFavorite);
         }}
       >
         <Image style={styles.imgProduct} source={{ uri: item.image }} />
@@ -156,7 +170,6 @@ const Home = ({ navigation }) => {
           id: item.id,
           category: item.category,
         });
-        console.log("chuyuyền vào pro :", item.isFavorite);
       }}
     >
       <Image source={{ uri: item.image }} style={styles.imgOffer} />
@@ -195,7 +208,9 @@ const Home = ({ navigation }) => {
           <TextInput
             placeholder="Search coffee"
             style={styles.input}
-          ></TextInput>
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
         </View>
         <Text style={{ fontSize: 25, fontWeight: "bold" }}>Category</Text>
         <FlatList
@@ -204,11 +219,10 @@ const Home = ({ navigation }) => {
           renderItem={renderCategoryItem}
           keyExtractor={(item, index) => index.toString()}
         />
-
         <FlatList
           key={flatListKey}
           horizontal
-          data={products}
+          data={filteredProducts}
           renderItem={renderProductItem}
           keyExtractor={(item, index) => index.toString()}
         />
