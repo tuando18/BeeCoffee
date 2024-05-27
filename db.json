@@ -182,30 +182,21 @@
       "description": "Refreshing black cold brew",
       "image": "https://yourdreamcoffee.com/wp-content/uploads/2021/06/cold-brew-iced-mocha-recipe-scaled.jpeg",
       "quantity": 1
-    },
-    {
-      "id": "98dc",
-      "size": "large",
-      "price": 4.5,
-      "nameProduct": "cappuccino cream",
-      "description": "Smooth and creamy cappuccino",
-      "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
-      "quantity": 1
     }
   ],
   "orders": [
     {
       "0": {
-        "id": "3997",
-        "size": "small",
-        "price": 4.5,
-        "nameProduct": "cappuccino cream",
-        "description": "Smooth and creamy cappuccino",
-        "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+        "id": "a605",
+        "size": "medium",
+        "price": 3.5,
+        "nameProduct": "Hot Espresso",
+        "description": "Strong black coffee",
+        "image": "https://file.hstatic.net/1000075078/article/blog_f80b599183c340bca744c174e7ab2af8.jpg",
         "quantity": 1
       },
       "1": {
-        "id": "5a9c",
+        "id": "34f4",
         "size": "small",
         "price": 3.8,
         "nameProduct": "Cold Brew Mocha",
@@ -213,43 +204,72 @@
         "image": "https://yourdreamcoffee.com/wp-content/uploads/2021/06/cold-brew-iced-mocha-recipe-scaled.jpeg",
         "quantity": 1
       },
-      "id": "5625"
+      "id": "edb9"
     },
     {
       "0": {
-        "id": "9c3b",
-        "size": "small",
-        "price": 4.5,
-        "nameProduct": "cappuccino cream",
-        "description": "Smooth and creamy cappuccino",
-        "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
-        "quantity": 1
-      },
-      "id": "87a7"
-    },
-    {
-      "0": {
-        "id": "537c",
-        "size": "small",
-        "price": 4.5,
-        "nameProduct": "cappuccino cream",
-        "description": "Smooth and creamy cappuccino",
-        "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
-        "quantity": 1
-      },
-      "id": "feac"
-    },
-    {
-      "0": {
-        "id": "1eae",
+        "id": "a605",
         "size": "medium",
-        "price": 4.5,
-        "nameProduct": "cappuccino cream",
-        "description": "Smooth and creamy cappuccino",
-        "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+        "price": 3.5,
+        "nameProduct": "Hot Espresso",
+        "description": "Strong black coffee",
+        "image": "https://file.hstatic.net/1000075078/article/blog_f80b599183c340bca744c174e7ab2af8.jpg",
+        "quantity": 1,
+        "selected": true
+      },
+      "1": {
+        "id": "34f4",
+        "size": "small",
+        "price": 3.8,
+        "nameProduct": "Cold Brew Mocha",
+        "description": "Refreshing black cold brew",
+        "image": "https://yourdreamcoffee.com/wp-content/uploads/2021/06/cold-brew-iced-mocha-recipe-scaled.jpeg",
+        "quantity": 1,
+        "selected": true
+      },
+      "id": "a97a"
+    },
+    {
+      "0": {
+        "id": "a605",
+        "size": "medium",
+        "price": 3.5,
+        "nameProduct": "Hot Espresso",
+        "description": "Strong black coffee",
+        "image": "https://file.hstatic.net/1000075078/article/blog_f80b599183c340bca744c174e7ab2af8.jpg",
         "quantity": 1
       },
-      "id": "7ea8"
+      "1": {
+        "id": "34f4",
+        "size": "small",
+        "price": 3.8,
+        "nameProduct": "Cold Brew Mocha",
+        "description": "Refreshing black cold brew",
+        "image": "https://yourdreamcoffee.com/wp-content/uploads/2021/06/cold-brew-iced-mocha-recipe-scaled.jpeg",
+        "quantity": 1
+      },
+      "id": "ed65"
+    },
+    {
+      "0": {
+        "id": "a605",
+        "size": "medium",
+        "price": 3.5,
+        "nameProduct": "Hot Espresso",
+        "description": "Strong black coffee",
+        "image": "https://file.hstatic.net/1000075078/article/blog_f80b599183c340bca744c174e7ab2af8.jpg",
+        "quantity": 1
+      },
+      "1": {
+        "id": "34f4",
+        "size": "small",
+        "price": 3.8,
+        "nameProduct": "Cold Brew Mocha",
+        "description": "Refreshing black cold brew",
+        "image": "https://yourdreamcoffee.com/wp-content/uploads/2021/06/cold-brew-iced-mocha-recipe-scaled.jpeg",
+        "quantity": 1
+      },
+      "id": "1c6f"
     }
   ],
   "contacts": [

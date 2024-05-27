@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import QuantitySelector from "../quantitySelector";
 import img3d from "../../assets/img3.jpeg";
 import apiUrl from "../../apiUrl";
-const url_cart = "http://" + apiUrl.tu + ":3000/carts";
+const url_cart = "http://" + apiUrl.tuan + ":3000/carts";
 
 const Cart = ({ navigation }) => {
   const [products, setProducts] = useState([]);
@@ -56,7 +56,7 @@ const Cart = ({ navigation }) => {
   };
 
   const handleRemoveCart = async (id) => {
-    let url_del = "http://" + apiUrl.tu + ":3000/carts/" + id;
+    let url_del = "http://" + apiUrl.tuan + ":3000/carts/" + id;
     console.log(url_del);
 
     // fetch(url_del, {
@@ -169,7 +169,7 @@ const Cart = ({ navigation }) => {
         </View>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Payments", { money: total, data: products })
+            navigation.navigate("Order", { money: total, data: products })
           }
           style={styles.btnPay}
         >
