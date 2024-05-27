@@ -15,8 +15,8 @@ import { useRoute } from "@react-navigation/native";
 import apiUrl from "../../apiUrl";
 
 const Home = ({ navigation }) => {
-  const url_Category = "http://" + apiUrl.tuan + ":3000/category";
-  const url_Product = "http://" + apiUrl.tuan + ":3000/products";
+  const url_Category = "http://" + apiUrl.tu + ":3000/category";
+  const url_Product = "http://" + apiUrl.tu + ":3000/products";
 
   const route = useRoute();
   const nameUserSend = route.params?.nameUserSend || "";
@@ -25,7 +25,7 @@ const Home = ({ navigation }) => {
   const [category, setCategory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(1);
   const [flatListKey, setFlatListKey] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   const handleCategorySelect = (category) => {
@@ -48,7 +48,7 @@ const Home = ({ navigation }) => {
   }, [selectedCategory]);
 
   useEffect(() => {
-    if (searchQuery === '') {
+    if (searchQuery === "") {
       setFilteredProducts(products);
     } else {
       setFilteredProducts(
