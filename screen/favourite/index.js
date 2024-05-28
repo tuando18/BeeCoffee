@@ -12,7 +12,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import apiUrl from "../../apiUrl";
-const url_api = "http://" + apiUrl.tu + ":3000/products?isFavorite=1";
+const url_api = "http://" + apiUrl.tuan + ":3000/products?isFavorite=1";
 
 const Favorite = () => {
   const [favoriteItems, setFavoriteItem] = useState([]);
@@ -46,14 +46,14 @@ const Favorite = () => {
     getFavoritesfromAPI();
   }, []);
   const handleRemoveFavorite = (id) => {
-    url_Update = "http://" + apiUrl.tu + ":3000/products/";
+    url_Update = "http://" + apiUrl.tuan + ":3000/products/";
     url_Update = url_Update + id;
     console.log(url_Update);
     getOne(id);
   };
 
   const getOne = (id) => {
-    fetch("http://" + apiUrl.tu + ":3000/products?id=" + id)
+    fetch("http://" + apiUrl.tuan + ":3000/products?id=" + id)
       .then((response) => response.json())
       .then((data) => {
         setProductUpdate(data);

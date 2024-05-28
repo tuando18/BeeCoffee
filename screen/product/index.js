@@ -18,8 +18,8 @@ const Product = ({ navigation }) => {
     route.params || {};
   const [selectedSize, setSelectedSize] = useState("small");
   const [isFavorite, setIsFavorite] = useState();
-  const url_api = "http://" + apiUrl.tu + ":3000/carts";
-  const url_apiPro = "http://" + apiUrl.tu + ":3000/products/" + id;
+  const url_api = "http://" + apiUrl.tuan + ":3000/carts";
+  const url_apiPro = "http://" + apiUrl.tuan + ":3000/products/" + id;
 
   useEffect(() => {
     setIsFavorite(favorite);

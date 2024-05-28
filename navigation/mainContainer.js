@@ -11,10 +11,10 @@ import CartScreen from "../screen/cart";
 // import LoginScreen from '../screen/login';
 // import RegisterScreen from '../screen/signIn';
 import ProductScreen from "../screen/product";
-// import PaymentsScreen from '../screen/payment';
 // import ProfileScreen from '../screen/profile';
 // import HistoryScreen from '../screen/history';
 import { useRoute } from "@react-navigation/native";
+import Order from "../screen/order";
 
 const Tab = createBottomTabNavigator();
 
@@ -68,6 +68,11 @@ const MainScreen = ({ navigation }) => {
       <Tab.Screen
         name="Cart"
         component={CartScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="Order"
+        component={Order}
         options={{ tabBarButton: () => null, headerShown: false }}
       />
     </Tab.Navigator>
