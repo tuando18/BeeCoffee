@@ -48,7 +48,7 @@ const Order = ({ navigation }) => {
           for (let i = 0; i <= idArray.length; i++) {
             deleteCarts(idArray[i]);
           }
-          navigation.navigate("Home");
+          navigation.navigate("OrderDetail");
 
         }
       })

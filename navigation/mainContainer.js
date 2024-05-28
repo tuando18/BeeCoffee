@@ -15,6 +15,7 @@ import ProductScreen from "../screen/product";
 // import HistoryScreen from '../screen/history';
 import { useRoute } from "@react-navigation/native";
 import Order from "../screen/order";
+import OrderDetail from "../screen/orderdetail";
 
 const Tab = createBottomTabNavigator();
 
@@ -75,6 +76,13 @@ const MainScreen = ({ navigation }) => {
         component={Order}
         options={{ tabBarButton: () => null, headerShown: false }}
       />
+
+<Tab.Screen
+        name="OrderDetail"
+        component={OrderDetail}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+
     </Tab.Navigator>
   );
 };
