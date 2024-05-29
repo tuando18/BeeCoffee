@@ -20,9 +20,9 @@ const Setting = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigation("PersonalDetails")}
+        onPress={() => handleNavigation("OrderDetail")}
       >
-        <Text style={styles.buttonText}>Personal Details</Text>
+        <Text style={styles.buttonText}>Order Details</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity

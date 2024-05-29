@@ -33,6 +33,7 @@ const Product = ({ navigation }) => {
     description: withwhere,
     image: data,
     quantity: 1,
+    category: category,
   };
   let productFavorite = {
     price: money,

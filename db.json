@@ -173,26 +173,18 @@
       "description": "Double shot espresso",
       "image": "https://file.hstatic.net/1000075078/file/_downloader.la_-61c5a3efe8a26_e89c52b940a049d7bc8aa114d2c03e5c_grande.jpg",
       "quantity": 1
-    }
+   }
   ],
   "orders": [
     {
       "0": {
-        "id": "a605",
-        "size": "medium",
-        "price": 3.5,
-        "nameProduct": "Hot Espresso",
-        "description": "Strong black coffee",
-        "image": "https://file.hstatic.net/1000075078/article/blog_f80b599183c340bca744c174e7ab2af8.jpg",
-        "quantity": 1
-      },
-      "1": {
-        "id": "f87a",
+        "id": "6bdd",
         "size": "small",
         "price": 4.5,
         "nameProduct": "cappuccino cream",
         "description": "Smooth and creamy cappuccino",
         "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+
         "quantity": 1
       },
       "id": "14dd"
@@ -283,6 +275,7 @@
         "quantity": 1
       },
       "id": "dd99"
+
     }
   ],
   "contacts": [
