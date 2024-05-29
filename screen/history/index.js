@@ -1,52 +1,82 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useState, useMemo } from "react";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  RefreshControl,
+  Button,
+} from "react-native";
 import apiUrl from "../../apiUrl";
 
 const url_orders = "http://" + apiUrl.tuan + ":3000/orders";
 
 const History = () => {
   const [ordersData, setOrdersData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
   useEffect(() => {
-    getOdersfromAPI();
+    getOrdersFromAPI();
   }, []);
-  const getOdersfromAPI = () => {
+
+  const getOrdersFromAPI = () => {
     fetch(url_orders)
       .then((res) => res.json())
-      .then((data) => setOrdersData(data))
-      .catch((ex) => console.log(ex));
+      .then((data) => {
+        setOrdersData(data);
+        setRefreshing(false);
+      })
+      .catch((ex) => {
+        console.log(ex);
+        setRefreshing(false);
+      });
   };
+
+  const sortedOrdersData = useMemo(() => {
+    return ordersData.slice().sort((a, b) => a[0].id - b[0].id);
+  }, [ordersData]);
 
   const renderItem = ({ item }) => (
     <View style={{ marginBottom: 20 }}>
-      {/* {Object.values(item).map((product, index) => ( */}
       <View>
-        <Text style={{ color: "red" }}>ID bill: {item[`0`][`id`]}</Text>
-        {/* <Text>{product.nameProduct}  Quantity: {item[`quantity`]}</Text>
-                    <Text>Price: ${product.price}</Text> */}
+        <Text style={{ color: "red" }}>ID bill: {item[0].id}</Text>
       </View>
-      {/* ))} */}
     </View>
   );
+
+  const handleRefresh = () => {
+    setRefreshing(true);
+    getOrdersFromAPI();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 20, marginBottom: 10, marginTop: 60 }}>
         List of history order
       </Text>
+
       <FlatList
-        data={ordersData}
+        data={sortedOrdersData}
         renderItem={renderItem}
-        keyExtractor={(item) => {
-          item.id.toString();
-        }}
+        keyExtractor={(item) => item[0].id.toString()}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+        }
       />
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
   },
 });
 
