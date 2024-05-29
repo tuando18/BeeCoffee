@@ -11,8 +11,8 @@ import CartScreen from "../screen/cart";
 // import LoginScreen from '../screen/login';
 // import RegisterScreen from '../screen/signIn';
 import ProductScreen from "../screen/product";
-// import ProfileScreen from '../screen/profile';
-// import HistoryScreen from '../screen/history';
+import ProfileScreen from "../screen/profile";
+import HistoryScreen from "../screen/history";
 import { useRoute } from "@react-navigation/native";
 import Order from "../screen/order";
 import OrderDetail from "../screen/orderdetail";
@@ -77,12 +77,21 @@ const MainScreen = ({ navigation }) => {
         options={{ tabBarButton: () => null, headerShown: false }}
       />
 
-<Tab.Screen
+      <Tab.Screen
         name="OrderDetail"
         component={OrderDetail}
         options={{ tabBarButton: () => null, headerShown: false }}
       />
-
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };
