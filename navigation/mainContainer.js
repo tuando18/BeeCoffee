@@ -7,14 +7,15 @@ import HomeScreen from "../screen/home";
 import FavoriteScreen from "../screen/favourite";
 import SettingScreen from "../screen/setting";
 // import ContactScreen from '../screen/contact';
-// import CartScreen from '../screen/cart';
+import CartScreen from "../screen/cart";
 // import LoginScreen from '../screen/login';
 // import RegisterScreen from '../screen/signIn';
 import ProductScreen from "../screen/product";
-// import PaymentsScreen from '../screen/payment';
-// import ProfileScreen from '../screen/profile';
-// import HistoryScreen from '../screen/history';
+import ProfileScreen from "../screen/profile";
+import HistoryScreen from "../screen/history";
 import { useRoute } from "@react-navigation/native";
+import Order from "../screen/order";
+import OrderDetail from "../screen/orderdetail";
 
 const Tab = createBottomTabNavigator();
 
@@ -63,6 +64,32 @@ const MainScreen = ({ navigation }) => {
       <Tab.Screen
         name="Product"
         component={ProductScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="Order"
+        component={Order}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+
+      <Tab.Screen
+        name="OrderDetail"
+        component={OrderDetail}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="History"
+        component={HistoryScreen}
         options={{ tabBarButton: () => null, headerShown: false }}
       />
     </Tab.Navigator>

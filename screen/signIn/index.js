@@ -24,7 +24,7 @@ const Register = ({ navigation }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const registerUser = (userData) => {
-    fetch("http://" + apiUrl.tu + ":3000/users", {
+    fetch("http://" + apiUrl.tuan + ":3000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
