@@ -1,0 +1,14 @@
+{
+    "orderDetail": {
+      "searchPlaceholder": "Search by product name",
+      "allCategories": "All",
+      "header": "Order Detail",
+      "loadingIndicator": "Loading...",
+      "noResults": "No results found.",
+      "idProduct": "ID product:",
+      "productName": "Name:",
+      "price": "Price:",
+      "quantity": "Quantity:"
+    }
+  }
+  

@@ -8,11 +8,13 @@ import {
   Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from 'react-i18next'
 
 const ProfileForm = ({ navigation }) => {
   const [name, setName] = useState("kmt");
   const [email, setEmail] = useState("123g@fpt.edu.vn");
   const [phoneNumber, setPhoneNumber] = useState("123-456-7890");
+  const { t } = useTranslation('profile');
 
   const handleSave = () => {
     console.log("Name:", name);
@@ -29,7 +31,7 @@ const ProfileForm = ({ navigation }) => {
         >
           <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.heading}>Profile</Text>
+        <Text style={styles.heading}>{t('profile.heading')}</Text>
       </View>
       <Image style={styles.avatar} source={require("../../assets/avt.jpeg")} />
 
@@ -55,7 +57,7 @@ const ProfileForm = ({ navigation }) => {
       />
 
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-        <Text style={styles.saveButtonText}>Save</Text>
+        <Text style={styles.saveButtonText}>{t('profile.btn')}</Text>
       </TouchableOpacity>
     </View>
   );

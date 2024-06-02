@@ -14,12 +14,14 @@ import QuantitySelector from "../quantitySelector";
 import img3d from "../../assets/img3.jpeg";
 import apiUrl from "../../apiUrl";
 const url_cart = "http://" + apiUrl.tuan + ":3000/carts";
+import { useTranslation } from 'react-i18next';
 
 const Cart = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [refreshing, setRefreshing] = useState(false);
+  const { t } = useTranslation('cart');
 
   useEffect(() => {
     getProdcutFromAPI();
@@ -136,7 +138,7 @@ const Cart = ({ navigation }) => {
           <Ionicons name="arrow-back" size={30} />
         </TouchableOpacity>
         <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" }}>
-          My Cart
+        {t('cart.myCart')}
         </Text>
       </View>
       <View style={styles.boxText}>
@@ -146,8 +148,8 @@ const Cart = ({ navigation }) => {
           color="#FF7B33"
           style={styles.cartIcons}
         />
-        <Text style={{ color: "#FF7B33", fontSize: 16, fontWeight: "500" }}>
-          You have {totalItems} items in your cart
+        <Text style={{ color: "#FF7B33", fontSize: 14, fontWeight: "500" }}>
+        {t('cart.youHave1')} {totalItems} {t('cart.youHave2')}
         </Text>
       </View>
 
@@ -164,7 +166,7 @@ const Cart = ({ navigation }) => {
 
       <View style={styles.total}>
         <View style={styles.flexRowTotal}>
-          <Text style={styles.textDescription}>Total</Text>
+          <Text style={styles.textDescription}>{t('cart.total')}</Text>
           <Text style={styles.textMoney}>$ {total}</Text>
         </View>
         <TouchableOpacity
@@ -174,7 +176,7 @@ const Cart = ({ navigation }) => {
           style={styles.btnPay}
         >
           <Text style={{ color: "white", fontWeight: "bold", fontSize: 17 }}>
-            Check out
+          {t('cart.checkOut')}
           </Text>
         </TouchableOpacity>
       </View>

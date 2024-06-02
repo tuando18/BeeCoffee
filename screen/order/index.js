@@ -7,11 +7,15 @@ import card from '../../assets/debitCard.png';
 import cash from '../../assets/cash.jpeg';
 import bankTransfer from '../../assets/bankTransfer.jpeg';
 import apiUrl from "../../apiUrl";
+import { useTranslation } from 'react-i18next';
+
 const url_api_orders = "http://" + apiUrl.tuan + ":3000/orders";
 
 const url_cart_del = "http://" + apiUrl.tuan + ":3000/cart/";
 
 const Order = ({ navigation }) => {
+  const { t } = useTranslation('order');
+
   const route = useRoute();
   const { money, data } = route.params || {};
   var idArray = data.map(function (item) {
@@ -84,14 +88,14 @@ const Order = ({ navigation }) => {
         <TouchableOpacity onPress={handleBackPress}>
           <Ionicons name="arrow-back" style={{ marginStart: 20 }} size={24} color="#000" />
         </TouchableOpacity>
-        <Text style={styles.heading}>Choose Payment Method</Text>
+        <Text style={styles.heading}>{t('order.heading')}</Text>
       </View>
       <TouchableOpacity
         style={styles.paymentButton}
         onPress={() => handlePaymentMethod('Debit Card')}
       >
         <Image source={card} style={styles.image} />
-        <Text style={styles.buttonText}>Debit Card</Text>
+        <Text style={styles.buttonText}>{t('order.debitCard')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
@@ -99,7 +103,7 @@ const Order = ({ navigation }) => {
         onPress={() => handlePaymentMethod('Cash')}
       >
         <Image source={cash} style={styles.icon} />
-        <Text style={styles.buttonText}>Cash</Text>
+        <Text style={styles.buttonText}>{t('order.cash')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
@@ -107,18 +111,18 @@ const Order = ({ navigation }) => {
         onPress={() => handlePaymentMethod('Bank Transfer')}
       >
         <Image source={bankTransfer} style={styles.icon} />
-        <Text style={styles.buttonText}>Bank Transfer</Text>
+        <Text style={styles.buttonText}>{t('order.bankTransfer')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
 
       {/* Thêm dòng mới cho giá và nút Pay */}
       <View style={styles.bottomRow}>
-        <Text style={styles.totalText}>Total: ${money}</Text>
+        <Text style={styles.totalText}>{t('order.total')} ${money}</Text>
         <TouchableOpacity
           style={styles.payButton}
           onPress={hanldlePayment}
         >
-          <Text style={styles.payButtonText}>Pay {paymentsBtn}</Text>
+          <Text style={styles.payButtonText}>{t('order.pay')} {paymentsBtn}</Text>
         </TouchableOpacity>
       </View>
     </View>

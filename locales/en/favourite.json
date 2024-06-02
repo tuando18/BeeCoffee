@@ -1,0 +1,7 @@
+{
+    "favourite": {
+        "title": "Favorite Items",
+        "deleteSuccess": "Successfully deleted from favorites list",
+        "notification": "Notification"
+    }
+}
