@@ -8,12 +8,14 @@ import {
   Button,
 } from "react-native";
 import apiUrl from "../../apiUrl";
+import { useTranslation } from 'react-i18next';
 
 const url_orders = "http://" + apiUrl.tuan + ":3000/orders";
 
 const History = () => {
   const [ordersData, setOrdersData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const { t } = useTranslation('history');
 
   useEffect(() => {
     getOrdersFromAPI();
@@ -52,7 +54,7 @@ const History = () => {
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 20, marginBottom: 10, marginTop: 60 }}>
-        List of history order
+      {t('history.heading')}
       </Text>
 
       <FlatList

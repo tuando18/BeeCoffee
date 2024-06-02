@@ -16,12 +16,16 @@ import HistoryScreen from "../screen/history";
 import { useRoute } from "@react-navigation/native";
 import Order from "../screen/order";
 import OrderDetail from "../screen/orderdetail";
+import Languages from "../screen/languages";
+
+import { useTranslation } from 'react-i18next';
 
 const Tab = createBottomTabNavigator();
 
 const MainScreen = ({ navigation }) => {
   const route = useRoute();
   const { nameUserSend } = route.params || {};
+  const { t } = useTranslation('menu');
 
   return (
     <Tab.Navigator
@@ -47,13 +51,15 @@ const MainScreen = ({ navigation }) => {
         name="Home"
         initialParams={{ nameUserSend: nameUserSend }}
         component={HomeScreen}
+        options={{ tabBarLabel: t('menu.home') }}
       />
       <Tab.Screen
         name="Favorite"
         component={FavoriteScreen}
-        options={{ headerShown: false }}
+        options={{ headerShown: false, tabBarLabel: t('menu.favourite') }}
       />
-      <Tab.Screen name="Setting" component={SettingScreen} />
+      <Tab.Screen name="Setting" component={SettingScreen}
+        options={{ tabBarLabel: t('menu.setting') }} />
       {/* Màn hình  */}
 
       {/* <Tab.Screen name="Product" component={ProductScreen} options={{ tabBarButton: () => null, headerShown: false }} />
@@ -90,6 +96,11 @@ const MainScreen = ({ navigation }) => {
       <Tab.Screen
         name="History"
         component={HistoryScreen}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="Languages"
+        component={Languages}
         options={{ tabBarButton: () => null, headerShown: false }}
       />
     </Tab.Navigator>

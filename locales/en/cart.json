@@ -1,0 +1,9 @@
+{
+    "cart": {
+        "myCart": "My Cart",
+        "youHave1": "You have",
+        "youHave2": "items in your cart",
+        "total": "Total",
+        "checkOut": "Check out"
+    }
+}

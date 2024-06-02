@@ -4,6 +4,7 @@ import {
     ActivityIndicator, RefreshControl, TouchableOpacity
 } from 'react-native';
 import apiUrl from "../../apiUrl";
+import { useTranslation } from 'react-i18next';
 
 const url_orders = `http://${apiUrl.tuan}:3000/orders/`;
 const url_categories = `http://${apiUrl.tuan}:3000/category/`;
@@ -17,6 +18,7 @@ const OrderDetail = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [flatListKey, setFlatListKey] = useState(0);
+    const { t } = useTranslation('orderdetail');
 
     useEffect(() => {
         getOrdersfromAPI();
@@ -90,10 +92,10 @@ const OrderDetail = () => {
         <View style={styles.productContainer}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <View style={styles.productDetails}>
-                <Text style={styles.text}>ID product: {item.id}</Text>
-                <Text style={styles.text}>Name: {item.nameProduct}</Text>
-                <Text style={styles.text}>Price: ${item.price}</Text>
-                <Text style={styles.text}>Quantity: {item.quantity}</Text>
+                <Text style={styles.text}>{t('orderDetail.idProduct')} {item.id}</Text>
+                <Text style={styles.text}>{t('orderDetail.productName')} {item.nameProduct}</Text>
+                <Text style={styles.text}>{t('orderDetail.price')} ${item.price}</Text>
+                <Text style={styles.text}>{t('orderDetail.quantity')} {item.quantity}</Text>
             </View>
         </View>
     );
@@ -133,10 +135,10 @@ const OrderDetail = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Order Detail</Text>
+            <Text style={styles.header}>{t('orderDetail.header')}</Text>
             <View style={styles.search}>
                 <TextInput
-                    placeholder="Search by product name"
+                    placeholder={t('orderDetail.searchPlaceholder')}
                     style={styles.input}
                     value={searchQuery}
                     onChangeText={setSearchQuery}

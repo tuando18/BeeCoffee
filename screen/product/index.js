@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
 import apiUrl from "../../apiUrl";
+import { useTranslation } from 'react-i18next'
 const Product = ({ navigation }) => {
   const route = useRoute();
   const { data, namePro, withwhere, money, favorite, id, category } =
@@ -20,6 +21,7 @@ const Product = ({ navigation }) => {
   const [isFavorite, setIsFavorite] = useState();
   const url_api = "http://" + apiUrl.tuan + ":3000/carts";
   const url_apiPro = "http://" + apiUrl.tuan + ":3000/products/" + id;
+  const { t } = useTranslation('product');
 
   useEffect(() => {
     setIsFavorite(favorite);
@@ -124,7 +126,7 @@ const Product = ({ navigation }) => {
       </View>
       <View style={styles.information}>
         <View style={styles.flexRow}>
-          <Text style={{ fontSize: 25, fontWeight: "bold" }}>Size</Text>
+          <Text style={{ fontSize: 25, fontWeight: "bold" }}>{t('product.size')}</Text>
         </View>
         <View style={styles.flexRow1}>
           <TouchableOpacity
@@ -137,7 +139,7 @@ const Product = ({ navigation }) => {
             ]}
             onPress={() => handleSizePress("small")}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>Small</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>{t('product.small')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -149,7 +151,7 @@ const Product = ({ navigation }) => {
             ]}
             onPress={() => handleSizePress("medium")}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>Medium</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>{t('product.medium')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -161,7 +163,7 @@ const Product = ({ navigation }) => {
             ]}
             onPress={() => handleSizePress("large")}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>Large</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>{t('product.large')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -172,18 +174,11 @@ const Product = ({ navigation }) => {
             marginStart: 25,
             marginTop: 30,
           }}
-        >
-          About
-        </Text>
-        <Text style={{ marginHorizontal: 25, marginTop: 10 }}>
-          Cappuccino, an Italian classic, blends strong espresso with velvety
-          steamed milk and frothy foam. Served in a small cup, it delivers a
-          harmonious balance of bold flavors and creamy richness, making it a
-          timeless and indulgent choice for coffee lovers.
-        </Text>
+        >{t('product.description')}</Text>
+        <Text style={{ marginHorizontal: 25, marginTop: 8 }}>{t('product.text')}</Text>
         <TouchableOpacity style={styles.btnAdd} onPress={handleAddToCartPress}>
           <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
-            Add To Cart | ${money}
+          {t('product.add-to-cart')} | ${money}
           </Text>
         </TouchableOpacity>
       </View>
@@ -266,7 +261,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 20,
     alignSelf: "center",
-    marginTop: 100,
+    marginTop: 80,
   },
   backButton: {
     position: "absolute",

@@ -14,6 +14,8 @@ import {
 
 import logo from "../../assets/logo.png";
 import apiUrl from "../../apiUrl";
+import { useTranslation } from 'react-i18next';
+
 const Register = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -22,6 +24,7 @@ const Register = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { t } = useTranslation('register');
 
   const registerUser = (userData) => {
     fetch("http://" + apiUrl.tuan + ":3000/users", {
@@ -46,14 +49,12 @@ const Register = ({ navigation }) => {
         console.error("Error registering user:", error);
       });
   };
+
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const isValidEmail = (email) => {
-    return emailPattern.test(email);
-  };
+  const isValidEmail = (email) => emailPattern.test(email);
+
   const phonePattern = /^[0-9]{10}$/;
-  const isValidPhone = (phone) => {
-    return phonePattern.test(phone);
-  };
+  const isValidPhone = (phone) => phonePattern.test(phone);
 
   const handleRegister = () => {
     if (
@@ -64,19 +65,19 @@ const Register = ({ navigation }) => {
       phone.trim() === "" ||
       address.trim() === ""
     ) {
-      setErrorMessage("Please fill in all required fields.");
+      setErrorMessage(t('register.fillAllFieldsError'));
     } else if (!isValidEmail(email)) {
-      setErrorMessage("Please fill true email.");
+      setErrorMessage(t('register.invalidEmailError'));
     } else if (!isValidPhone(phone)) {
-      setErrorMessage("Please fill true phone.");
+      setErrorMessage(t('register.invalidPhoneError'));
     } else {
       const userData = {
-        username: username,
-        password: password,
+        username,
+        password,
         name: fullname,
-        email: email,
-        phone: phone,
-        address: address,
+        email,
+        phone,
+        address,
       };
       registerUser(userData);
     }
@@ -91,45 +92,45 @@ const Register = ({ navigation }) => {
         <View style={styles.innerContainer}>
           <Image style={styles.logo} source={logo} />
           <Text style={{ fontSize: 25, fontWeight: "bold", marginBottom: 30 }}>
-            Create an Account
+            {t('register.createAccount')}
           </Text>
 
           <View style={styles.inputContainer}>
             <TextInput
-              placeholder="Fullname"
+              placeholder={t('register.fullnamePlaceholder')}
               style={styles.input}
               onChangeText={(text) => setFullname(text)}
               value={fullname}
             />
             <TextInput
-              placeholder="Email"
+              placeholder={t('register.emailPlaceholder')}
               style={styles.input}
               onChangeText={(text) => setEmail(text)}
               value={email}
               keyboardType="email-address"
             />
             <TextInput
-              placeholder="Username"
+              placeholder={t('register.usernamePlaceholder')}
               style={styles.input}
               onChangeText={(text) => setUsername(text)}
               value={username}
             />
             <TextInput
-              placeholder="Password"
+              placeholder={t('register.passwordPlaceholder')}
               style={styles.input}
               onChangeText={(text) => setPassword(text)}
               value={password}
               secureTextEntry
             />
             <TextInput
-              placeholder="Phone"
+              placeholder={t('register.phonePlaceholder')}
               style={styles.input}
               onChangeText={(text) => setPhone(text)}
               value={phone}
               keyboardType="phone-pad"
             />
             <TextInput
-              placeholder="Address"
+              placeholder={t('register.addressPlaceholder')}
               style={styles.input}
               onChangeText={(text) => setAddress(text)}
               value={address}
@@ -144,15 +145,15 @@ const Register = ({ navigation }) => {
             style={styles.registerButton}
             onPress={handleRegister}
           >
-            <Text style={styles.buttonText}>Register</Text>
+            <Text style={styles.buttonText}>{t('register.loginNow')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.signInLink}
             onPress={() => navigation.navigate("Login")}
           >
-            <Text>Already have an account? </Text>
-            <Text style={styles.linkText}>Login now</Text>
+            <Text>{t('register.alreadyHaveAccount')} </Text>
+            <Text style={styles.linkText}>{t('register.loginNow')}</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>

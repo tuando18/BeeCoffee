@@ -16,6 +16,7 @@ import styles from "./style";
 
 import logo from "../../assets/logo.png";
 import apiUrl from "../../apiUrl";
+import { useTranslation } from 'react-i18next';
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -25,6 +26,8 @@ const Login = ({ navigation }) => {
   const [passwordsArray, setPasswordsArray] = useState([]);
   const [name, setName] = useState([]);
   let nameUser = "name";
+
+  const { t } = useTranslation('login');
 
   useEffect(() => {
     getDatafromAPI();
@@ -78,21 +81,21 @@ const Login = ({ navigation }) => {
       >
         <View style={styles.innerContainer}>
           <Image style={styles.anh} source={logo} />
-          <Text style={{ fontSize: 25, fontWeight: "bold" }}>
-            Welcome to Bee Cooffee
+          <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+            {t('login.welcome')}
           </Text>
           <Text style={{ fontSize: 19, marginTop: 10, marginBottom: 30 }}>
-            Login to continue
+          {t('login.loginToContinue')}
           </Text>
 
           <TextInput
-            placeholder="Username"
+            placeholder={t('login.username')}
             style={styles.input}
             onChangeText={(text) => setUsername(text)}
             value={username}
           />
           <TextInput
-            placeholder="Password"
+            placeholder={t('login.password')}
             style={styles.input}
             onChangeText={(text) => setPassword(text)}
             value={password}
@@ -106,7 +109,7 @@ const Login = ({ navigation }) => {
           )}
 
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-            <Text style={styles.loginButtonText}>Login</Text>
+            <Text style={styles.loginButtonText}>{t('login.login')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -118,12 +121,12 @@ const Login = ({ navigation }) => {
               setErrorMessage("");
             }}
           >
-            <Text>If you don't have an account? </Text>
-            <Text style={{ color: "#35C2C1" }}>Register now</Text>
+            <Text>{t('login.dontHaveAccount')}</Text>
+            <Text style={{ color: "#35C2C1" }}> {t('login.registerNow')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ flexDirection: "row", marginTop: 10 }}>
-            <Text>Forgot Password?</Text>
-            <Text style={{ color: "#35C2C1" }}> Click to reset Password</Text>
+            <Text>{t('login.forgotPassword')}</Text>
+            <Text style={{ color: "#35C2C1" }}> {t('login.forgotPassword')}</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>

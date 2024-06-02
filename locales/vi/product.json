@@ -1,0 +1,11 @@
+{
+    "product": {
+        "size": "Kích thước",
+        "small": "Nhỏ",
+        "medium": "Vừa",
+        "large": "Lớn",
+        "description": "Mô tả",
+        "add-to-cart": "Thêm vào giỏ hàng",
+        "text": "Cappuccino, một loại cà phê cổ điển của Ý, pha trộn espresso đậm đà với hương vị mượt mà của sữa hấp và bọt sủi bọt. Được phục vụ trong một chiếc cốc nhỏ, nó mang lại cảm giác ngon miệng với sự cân bằng hài hòa giữa hương vị đậm đà và độ béo ngậy của kem, khiến nó trở thành một sự lựa chọn vượt thời gian và thú vị cho những người yêu thích cà phê."
+      }
+}

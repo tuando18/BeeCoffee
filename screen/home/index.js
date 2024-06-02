@@ -14,9 +14,13 @@ import avatar1 from "../../assets/avt.jpeg";
 import { useRoute } from "@react-navigation/native";
 import apiUrl from "../../apiUrl";
 
+import { useTranslation } from 'react-i18next'
+
 const Home = ({ navigation }) => {
   const url_Category = "http://" + apiUrl.tuan + ":3000/category";
   const url_Product = "http://" + apiUrl.tuan + ":3000/products";
+
+  const {t} = useTranslation('home');
 
   const route = useRoute();
   const nameUserSend = route.params?.nameUserSend || "";
@@ -189,7 +193,7 @@ const Home = ({ navigation }) => {
             </TouchableOpacity>
             <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold" }}>
               {" "}
-              Hello {nameUserSend}{" "}
+              {t('home.wel')} {nameUserSend}{" "}
             </Text>
           </View>
           <TouchableOpacity
@@ -206,13 +210,13 @@ const Home = ({ navigation }) => {
         </View>
         <View style={styles.search}>
           <TextInput
-            placeholder="Search coffee"
+            placeholder={t('home.search')}
             style={styles.input}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
         </View>
-        <Text style={{ fontSize: 25, fontWeight: "bold" }}>Category</Text>
+        <Text style={{ fontSize: 25, fontWeight: "bold" }}>{t('home.category')}</Text>
         <FlatList
           horizontal
           data={category}
@@ -226,7 +230,7 @@ const Home = ({ navigation }) => {
           renderItem={renderProductItem}
           keyExtractor={(item, index) => index.toString()}
         />
-        <Text style={styles.content}>Special offer</Text>
+        <Text style={styles.content}>{t('home.special')}</Text>
         <FlatList
           data={products}
           renderItem={renderSpecialItem}

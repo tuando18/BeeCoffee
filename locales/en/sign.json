@@ -1,0 +1,18 @@
+{
+    "register": {
+      "createAccount": "Create an Account",
+      "fullnamePlaceholder": "Fullname",
+      "emailPlaceholder": "Email",
+      "usernamePlaceholder": "Username",
+      "passwordPlaceholder": "Password",
+      "phonePlaceholder": "Phone",
+      "addressPlaceholder": "Address",
+      "registerButton": "Register",
+      "alreadyHaveAccount": "Already have an account?",
+      "loginNow": "Login now",
+      "fillAllFieldsError": "Please fill in all required fields.",
+      "invalidEmailError": "Please enter a valid email.",
+      "invalidPhoneError": "Please enter a valid phone number."
+    }
+  }
+  

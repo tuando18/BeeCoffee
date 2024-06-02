@@ -1,0 +1,11 @@
+{
+    "order": {
+        "heading": "Choose Payment Method",
+        "debitCard": "Debit Card",
+        "cash": "Cash",
+        "bankTransfer": "Bank Transfer",
+        "total": "Total:",
+        "pay": "Pay",
+        "payBtnText": "Pay {{paymentMethod}}"
+    }
+}
