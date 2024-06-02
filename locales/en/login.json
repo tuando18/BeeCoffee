@@ -1,0 +1,15 @@
+{
+    "login": {
+        "welcome": "Welcome to Bee Coffee",
+        "loginToContinue": "Login to continue",
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "dontHaveAccount": "If you don't have an account?",
+        "registerNow": "Register now",
+        "forgotPassword": "Forgot Password?",
+        "clickToReset": "Click to reset Password",
+        "errorMessage": "Username or password wrong. Try again!"
+      }
+}
+  

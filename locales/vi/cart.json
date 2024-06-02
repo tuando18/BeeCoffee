@@ -1,0 +1,9 @@
+{
+  "cart": {
+    "myCart": "Giỏ hàng của tôi",
+    "youHave1": "Bạn có",
+    "youHave2": "mặt hàng trong giỏ hàng của mình",
+    "total": "Tổng cộng",
+    "checkOut": "Thanh toán"
+  }
+}

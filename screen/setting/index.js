@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from 'react-i18next'
 
 const Setting = ({ navigation }) => {
   const handleNavigation = (screenName) => {
@@ -9,55 +10,56 @@ const Setting = ({ navigation }) => {
     // alert(`Screen ${screenName} is under development`)
   };
 
+  const { t } = useTranslation('setting');
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation("History")}
       >
-        <Text style={styles.buttonText}>History</Text>
+        <Text style={styles.buttonText}>{t('setting.history')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation("OrderDetail")}
       >
-        <Text style={styles.buttonText}>Order Details</Text>
+        <Text style={styles.buttonText}>{t('setting.orderDetails')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation("Address")}
       >
-        <Text style={styles.buttonText}>Address</Text>
+        <Text style={styles.buttonText}>{t('setting.address')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation("Payments")}
       >
-        <Text style={styles.buttonText}>Payment Method</Text>
+        <Text style={styles.buttonText}>{t('setting.paymentMethod')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleNavigation("About")}
+        onPress={() => handleNavigation("Languages")}
       >
-        <Text style={styles.buttonText}>About</Text>
+        <Text style={styles.buttonText}>{t('setting.languages')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleNavigation("Help")}
       >
-        <Text style={styles.buttonText}>Help</Text>
+        <Text style={styles.buttonText}>{t('setting.help')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.logoutButton}
         onPress={() => navigation.navigate("Login")}
       >
-        <Text style={styles.logoutButtonText}>Log out</Text>
+        <Text style={styles.logoutButtonText}>{t('setting.logout')}</Text>
         <Ionicons name="arrow-forward" size={24} color="#000" />
       </TouchableOpacity>
     </View>

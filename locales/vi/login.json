@@ -1,0 +1,15 @@
+{
+  "login": {
+      "welcome": "Chào mừng đến với Bee Coffee",
+      "loginToContinue": "Đăng nhập để tiếp tục",
+      "username": "Tên người dùng",
+      "password": "Mật khẩu",
+      "login": "Đăng nhập",
+      "dontHaveAccount": "Nếu bạn chưa có tài khoản?",
+      "registerNow": "Đăng ký ngay",
+      "forgotPassword": "Quên mật khẩu?",
+      "clickToReset": "Nhấn để đặt lại mật khẩu",
+      "errorMessage": "Tên người dùng hoặc mật khẩu sai. Thử lại!"
+    
+  }
+}

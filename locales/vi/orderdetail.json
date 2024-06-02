@@ -1,0 +1,13 @@
+{
+  "orderDetail": {
+    "searchPlaceholder": "Tìm kiếm theo tên sản phẩm",
+    "allCategories": "Tất cả",
+    "header": "Chi tiết đơn hàng",
+    "loadingIndicator": "Đang tải...",
+    "noResults": "Không tìm thấy kết quả nào.",
+    "idProduct": "ID sản phẩm:",
+    "productName": "Tên sản phẩm:",
+    "price": "Giá:",
+    "quantity": "Số lượng:"
+  }
+}

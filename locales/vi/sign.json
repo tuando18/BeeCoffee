@@ -1,0 +1,17 @@
+{
+  "register": {
+    "createAccount": "Tạo tài khoản",
+    "fullnamePlaceholder": "Họ và tên",
+    "emailPlaceholder": "Email",
+    "usernamePlaceholder": "Tên đăng nhập",
+    "passwordPlaceholder": "Mật khẩu",
+    "phonePlaceholder": "Số điện thoại",
+    "addressPlaceholder": "Địa chỉ",
+    "registerButton": "Đăng ký",
+    "alreadyHaveAccount": "Đã có tài khoản?",
+    "loginNow": "Đăng nhập ngay",
+    "fillAllFieldsError": "Vui lòng điền tất cả các trường bắt buộc.",
+    "invalidEmailError": "Vui lòng nhập email hợp lệ.",
+    "invalidPhoneError": "Vui lòng nhập số điện thoại hợp lệ."
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "product": {
+        "size": "Size",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large",
+        "description": "Description",
+        "add-to-cart": "Add to cart",
+        "text": "Cappuccino, a classic Italian coffee, blends bold espresso with the smooth taste of steamed milk and foamy froth. Served in a small cup, it delivers a delightful balance of rich flavor and creamy texture, making it a timeless and enjoyable choice for coffee lovers."
+      }
+}

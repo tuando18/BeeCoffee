@@ -12,12 +12,18 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import apiUrl from "../../apiUrl";
-const url_api = "http://" + apiUrl.tuan + ":3000/products?isFavorite=1";
+import { useTranslation } from 'react-i18next';
 
 const Favorite = () => {
   const [favoriteItems, setFavoriteItem] = useState([]);
   const [productUpdate, setProductUpdate] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+
+  const { t } = useTranslation('favourite');
+  const navigation = useNavigation();
+
+  const url_api = `http://${apiUrl.tuan}:3000/products?isFavorite=1`;
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     console.log("Bắt đầu load lại dữ liệu");
@@ -30,7 +36,6 @@ const Favorite = () => {
   }, []);
 
   let url_Update;
-  const navigation = useNavigation();
 
   const getFavoritesfromAPI = async () => {
     try {
@@ -45,20 +50,19 @@ const Favorite = () => {
   useEffect(() => {
     getFavoritesfromAPI();
   }, []);
+
   const handleRemoveFavorite = (id) => {
-    url_Update = "http://" + apiUrl.tuan + ":3000/products/";
-    url_Update = url_Update + id;
+    url_Update = `http://${apiUrl.tuan}:3000/products/${id}`;
     console.log(url_Update);
     getOne(id);
   };
 
   const getOne = (id) => {
-    fetch("http://" + apiUrl.tuan + ":3000/products?id=" + id)
+    fetch(`http://${apiUrl.tuan}:3000/products?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
         setProductUpdate(data);
-        updatedProduct = { ...data[0] };
-        updatedProduct.isFavorite = false;
+        const updatedProduct = { ...data[0], isFavorite: false };
 
         console.log(updatedProduct);
         removeFavorite(updatedProduct);
@@ -76,8 +80,8 @@ const Favorite = () => {
       body: JSON.stringify(productFavorite),
     })
       .then((res) => {
-        if (res.status == 200) {
-          Alert.alert("Notification", "Successfully deleted favorites list");
+        if (res.status === 200) {
+          Alert.alert(t('favourite.notification'), t('favourite.deleteSuccess'));
           getFavoritesfromAPI();
         }
       })
@@ -105,7 +109,7 @@ const Favorite = () => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <Text style={styles.title}>Favorite</Text>
+      <Text style={styles.title}>{t('favourite.title')}</Text>
 
       {favoriteItems.map((item) => (
         <TouchableOpacity

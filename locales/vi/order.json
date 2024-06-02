@@ -1,0 +1,11 @@
+{
+    "order": {
+        "heading": "Chọn Phương Thức Thanh Toán",
+        "debitCard": "Thẻ Ghi Nợ",
+        "cash": "Tiền Mặt",
+        "bankTransfer": "Chuyển Khoản Ngân Hàng",
+        "total": "Tổng Tiền:",
+        "pay": "Thanh Toán",
+        "payBtnText": "Thanh Toán {{paymentMethod}}"
+    }
+}
