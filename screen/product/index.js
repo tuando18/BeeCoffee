@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,9 +11,12 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import { ScrollView } from "react-native-gesture-handler";
+import { ThemeContext } from "../theme/ThemeContext"; // Import ThemeContext
 import apiUrl from "../../apiUrl";
 import { useTranslation } from 'react-i18next'
+
 const Product = ({ navigation }) => {
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
   const route = useRoute();
   const { data, namePro, withwhere, money, favorite, id, category } =
     route.params || {};
@@ -98,6 +101,116 @@ const Product = ({ navigation }) => {
     navigation.goBack();
   };
 
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          flex: 1,
+          position: "relative",
+          backgroundColor: theme.colors.background,
+        },
+        imageContainer: {
+          position: "relative",
+        },
+        image: {
+          width: "100%",
+          height: 300,
+        },
+        overlay: {
+          ...StyleSheet.absoluteFillObject,
+          justifyContent: "flex-end",
+          alignItems: "flex-start",
+          paddingBottom: 40,
+          paddingLeft: 20,
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+        },
+        overlayTextLarge: {
+          color: "white",
+          fontSize: 18,
+          fontWeight: "bold",
+        },
+        overlayTextSmall: {
+          color: "white",
+          fontSize: 14,
+          fontWeight: "normal",
+        },
+        overlayBottom: {
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 5,
+          backgroundColor: "black",
+        },
+        information: {
+          marginTop: 10,
+          paddingHorizontal: 20,
+          paddingVertical: 10,
+          backgroundColor: theme.colors.background, // Thêm backgroundColor
+          borderRadius: 20,
+        },
+        flexRow: {
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginHorizontal: 23,
+          marginTop: 30,
+          marginBottom: 30,
+        },
+        flexRow1: {
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginHorizontal: 23,
+          marginBottom: 30,
+        },
+        boxSize: {
+          height: 40,
+          width: 100,
+          borderRadius: 10,
+          borderWidth: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          borderColor: theme.colors.border,
+          backgroundColor: theme.colors.card,
+        },
+        btnAdd: {
+          backgroundColor: "#005223",
+          width: 300,
+          height: 50,
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 20,
+          alignSelf: "center",
+          marginTop: 100,
+        },
+        backButton: {
+          position: "absolute",
+          top: 50,
+          left: 20,
+          zIndex: 1,
+        },
+        favoriteButton: {
+          position: "absolute",
+          top: 50,
+          right: 20,
+          zIndex: 1,
+        },
+        heartIcon: {
+          fontWeight: "bold",
+        },
+        textSize: {
+          fontSize: 25, 
+          fontWeight: "bold", 
+          color: theme.colors.text, // Set text color
+        },
+        textSize1: {
+          fontSize: 16, 
+          fontWeight: "bold", 
+          color: theme.colors.text, // Set text color
+        }
+      }),
+    [theme]
+  );
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
@@ -126,7 +239,7 @@ const Product = ({ navigation }) => {
       </View>
       <View style={styles.information}>
         <View style={styles.flexRow}>
-          <Text style={{ fontSize: 25, fontWeight: "bold" }}>{t('product.size')}</Text>
+          <Text style={styles.textSize}>{t('product.size')}</Text>
         </View>
         <View style={styles.flexRow1}>
           <TouchableOpacity
@@ -139,7 +252,7 @@ const Product = ({ navigation }) => {
             ]}
             onPress={() => handleSizePress("small")}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>{t('product.small')}</Text>
+            <Text style={styles.textSize1}>{t('product.small')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -151,7 +264,7 @@ const Product = ({ navigation }) => {
             ]}
             onPress={() => handleSizePress("medium")}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>{t('product.medium')}</Text>
+            <Text style={styles.textSize1}>{t('product.medium')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -163,7 +276,7 @@ const Product = ({ navigation }) => {
             ]}
             onPress={() => handleSizePress("large")}
           >
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>{t('product.large')}</Text>
+            <Text style={styles.textSize1}>{t('product.large')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -173,9 +286,10 @@ const Product = ({ navigation }) => {
             fontWeight: "bold",
             marginStart: 25,
             marginTop: 30,
+            color: theme.colors.text, // Set text color
           }}
         >{t('product.description')}</Text>
-        <Text style={{ marginHorizontal: 25, marginTop: 8 }}>{t('product.text')}</Text>
+        <Text style={{ marginHorizontal: 25, marginTop: 10, color: theme.colors.text }}>{t('product.text')}</Text>
         <TouchableOpacity style={styles.btnAdd} onPress={handleAddToCartPress}>
           <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
           {t('product.add-to-cart')} | ${money}
@@ -186,98 +300,5 @@ const Product = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "relative",
-    backgroundColor: "#fff",
-  },
-  imageContainer: {
-    position: "relative",
-  },
-  image: {
-    width: "100%",
-    height: 300,
-  },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-end",
-    alignItems: "flex-start",
-    paddingBottom: 40,
-    paddingLeft: 20,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
-  overlayTextLarge: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  overlayTextSmall: {
-    color: "white",
-    fontSize: 14,
-    fontWeight: "normal",
-  },
-  overlayBottom: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 5,
-    backgroundColor: "black",
-  },
-  information: {
-    marginTop: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    backgroundColor: "#fff",
-    borderRadius: 20,
-  },
-  flexRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 23,
-    marginTop: 30,
-    marginBottom: 30,
-  },
-  flexRow1: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginHorizontal: 23,
-    marginBottom: 30,
-  },
-  boxSize: {
-    height: 40,
-    width: 100,
-    borderRadius: 10,
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btnAdd: {
-    backgroundColor: "#005223",
-    width: 300,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 20,
-    alignSelf: "center",
-    marginTop: 80,
-  },
-  backButton: {
-    position: "absolute",
-    top: 50,
-    left: 20,
-    zIndex: 1,
-  },
-  favoriteButton: {
-    position: "absolute",
-    top: 50,
-    right: 20,
-    zIndex: 1,
-  },
-  heartIcon: {
-    fontWeight: "bold",
-  },
-});
 
 export default Product;

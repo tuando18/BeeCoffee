@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useContext } from "react";
 import {
   View,
   Text,
@@ -9,13 +9,16 @@ import {
 } from "react-native";
 import apiUrl from "../../apiUrl";
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../theme/ThemeContext'; // Import ThemeContext
 
 const url_orders = "http://" + apiUrl.tuan + ":3000/orders";
 
 const History = () => {
   const [ordersData, setOrdersData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+
   const { t } = useTranslation('history');
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
 
   useEffect(() => {
     getOrdersFromAPI();
@@ -41,7 +44,7 @@ const History = () => {
   const renderItem = ({ item }) => (
     <View style={{ marginBottom: 20 }}>
       <View>
-        <Text style={{ color: "red" }}>ID bill: {item[0].id}</Text>
+        <Text style={{ color: theme.colors.text }}>ID bill: {item[0].id}</Text>
       </View>
     </View>
   );
@@ -52,8 +55,8 @@ const History = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 20, marginBottom: 10, marginTop: 60 }}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <Text style={[{ fontSize: 20, marginBottom: 10, marginTop: 60, color: theme.colors.text }]}>
       {t('history.heading')}
       </Text>
 
@@ -62,7 +65,7 @@ const History = () => {
         renderItem={renderItem}
         keyExtractor={(item) => item[0].id.toString()}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+          <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} colors={[theme.colors.primary]} />
         }
       />
     </View>
@@ -73,7 +76,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#fff",
   },
   buttonContainer: {
     flexDirection: "row",

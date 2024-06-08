@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { ThemeContext } from '../theme/ThemeContext'; // Import ThemeContext
 import apiUrl from "../../apiUrl";
 import { useTranslation } from 'react-i18next';
 
@@ -19,7 +20,9 @@ const Favorite = () => {
   const [productUpdate, setProductUpdate] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
   const { t } = useTranslation('favourite');
+
   const navigation = useNavigation();
 
   const url_api = `http://${apiUrl.tuan}:3000/products?isFavorite=1`;
@@ -104,12 +107,12 @@ const Favorite = () => {
 
   return (
     <ScrollView
-      style={styles.container}
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <Text style={styles.title}>{t('favourite.title')}</Text>
+      <Text style={[styles.title, { color: theme.colors.text }]}>{t('favourite.title')}</Text>
 
       {favoriteItems.map((item) => (
         <TouchableOpacity
@@ -122,8 +125,8 @@ const Favorite = () => {
             source={{ uri: item.image }}
           />
           <View style={styles.favoriteItemInfo}>
-            <Text style={styles.favoriteItemName}>{item.nameProduct}</Text>
-            <Text style={styles.favoriteItemDescription}>
+            <Text style={[styles.favoriteItemName, { color: theme.colors.text }]}>{item.nameProduct}</Text>
+            <Text style={[styles.favoriteItemDescription, { color: theme.colors.text }]}>
               {item.description}
             </Text>
             <Text style={styles.favoriteItemPrice}>$ {item.price}</Text>
@@ -143,7 +146,6 @@ const Favorite = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     padding: 20,
   },
   title: {
@@ -178,8 +180,8 @@ const styles = StyleSheet.create({
   favoriteItemPrice: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#055E38", // Adjust the color to match your theme
     marginTop: 5,
+    color: "#055E38"
   },
   favoriteItemRemoveButton: {
     padding: 10,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import {
   View,
   Text,
@@ -11,12 +11,14 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import QuantitySelector from "../quantitySelector";
+import { ThemeContext } from "../theme/ThemeContext"; // Import ThemeContext
 import img3d from "../../assets/img3.jpeg";
 import apiUrl from "../../apiUrl";
 const url_cart = "http://" + apiUrl.tuan + ":3000/carts";
 import { useTranslation } from 'react-i18next';
 
 const Cart = ({ navigation }) => {
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -101,7 +103,7 @@ const Cart = ({ navigation }) => {
         <Image style={styles.productImage} source={{ uri: item.image }} />
         <View style={styles.infoItem}>
           <Text style={styles.titleSmall}>{item.nameProduct}</Text>
-          <Text>{item.description}</Text>
+          <Text style={styles.titledes}>{item.description}</Text>
           <Text style={styles.price}>$ {item.price}</Text>
           <QuantitySelector
             initialValue={item.quantity}
@@ -128,6 +130,114 @@ const Cart = ({ navigation }) => {
     getProdcutFromAPI();
   };
 
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: theme.colors.background,
+        },
+        header: {
+          flexDirection: "row",
+          marginTop: 65,
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: 30,
+        },
+        backIcon: {
+          position: "absolute",
+          left: 15,
+        },
+        boxText: {
+          marginTop: 10,
+          alignSelf: "center",
+          flexDirection: "row",
+          height: 50,
+          width: "80%",
+          backgroundColor: "#FFF4EE",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 20,
+        },
+        cartIcons: {
+          marginRight: 10,
+        },
+        itemContainer: {
+          flex: 1,
+          flexDirection: "row",
+          marginStart: 25,
+          marginTop: 30,
+        },
+        productImage: {
+          height: 120,
+          width: 120,
+          borderRadius: 20,
+        },
+        infoItem: {
+          marginStart: 20,
+          width: "50%",
+        },
+        titleSmall: {
+          fontSize: 20,
+          fontWeight: "bold",
+          marginBottom: 10,
+          color: theme.colors.text, // Set text color
+        },
+
+        titledes: {
+          fontSize: 11,
+          marginBottom: 10,
+          color: theme.colors.text, // Set text color
+        },
+
+        price: {
+          fontSize: 16,
+          fontWeight: "bold",
+          color: "red",
+          marginTop: 15,
+        },
+        line: {
+          width: "90%",
+          height: 1,
+          borderWidth: 0.5,
+          alignSelf: "center",
+          marginTop: 25,
+          // borderColor: "#E5E5E5",
+          borderColor: theme.colors.border,
+        },
+        total: {
+          marginTop: 20,
+          bottom: 30,
+          width: "100%",
+          height: 90,
+        },
+        flexRowTotal: {
+          flex: 1,
+          flexDirection: "row",
+          marginHorizontal: 25,
+          justifyContent: "space-between",
+        },
+        textDescription: {
+          color: "#B3B5B5",
+          fontSize: 17,
+        },
+        textMoney: {
+          fontSize: 17,
+          color: "red",
+        },
+        btnPay: {
+          backgroundColor: "#1F1F1F",
+          height: 40,
+          width: "70%",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 20,
+          alignSelf: "center",
+        },
+      }),
+    [theme]
+  );
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -137,7 +247,7 @@ const Cart = ({ navigation }) => {
         >
           <Ionicons name="arrow-back" size={30} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center" }}>
+        <Text style={{ fontSize: 30, fontWeight: "bold", textAlign: "center", color: theme.colors.text}}>
         {t('cart.myCart')}
         </Text>
       </View>
@@ -184,100 +294,5 @@ const Cart = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-  header: {
-    flexDirection: "row",
-    marginTop: 65,
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 30,
-  },
-  backIcon: {
-    position: "absolute",
-    left: 15,
-  },
-  boxText: {
-    marginTop: 10,
-    alignSelf: "center",
-    flexDirection: "row",
-    height: 50,
-    width: "80%",
-    backgroundColor: "#FFF4EE",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-  },
-  cartIcons: {
-    marginRight: 10,
-  },
-  itemContainer: {
-    flex: 1,
-    flexDirection: "row",
-    marginStart: 25,
-    marginTop: 30,
-  },
-  productImage: {
-    height: 120,
-    width: 120,
-    borderRadius: 20,
-  },
-  infoItem: {
-    marginStart: 20,
-    width: "50%",
-  },
-  titleSmall: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  price: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "red",
-    marginTop: 15,
-  },
-  line: {
-    width: "90%",
-    height: 1,
-    borderWidth: 0.5,
-    alignSelf: "center",
-    marginTop: 25,
-
-    borderColor: "#E5E5E5",
-  },
-  total: {
-    marginTop: 20,
-    bottom: 30,
-    width: "100%",
-    height: 90,
-  },
-  flexRowTotal: {
-    flex: 1,
-    flexDirection: "row",
-    marginHorizontal: 25,
-    justifyContent: "space-between",
-  },
-  textDescription: {
-    color: "#B3B5B5",
-    fontSize: 17,
-  },
-  textMoney: {
-    fontSize: 17,
-    color: "red",
-  },
-  btnPay: {
-    backgroundColor: "#1F1F1F",
-    height: 40,
-    width: "70%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-    alignSelf: "center",
-  },
-});
 
 export default Cart;

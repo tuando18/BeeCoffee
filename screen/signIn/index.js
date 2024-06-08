@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,6 +15,8 @@ import {
 import logo from "../../assets/logo.png";
 import apiUrl from "../../apiUrl";
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from "../theme/ThemeContext";
+
 
 const Register = ({ navigation }) => {
   const [fullname, setFullname] = useState("");
@@ -24,6 +26,9 @@ const Register = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { theme } = useContext(ThemeContext);
+  const styles = getStyles(theme);
   const { t } = useTranslation('register');
 
   const registerUser = (userData) => {
@@ -91,19 +96,21 @@ const Register = ({ navigation }) => {
       >
         <View style={styles.innerContainer}>
           <Image style={styles.logo} source={logo} />
-          <Text style={{ fontSize: 25, fontWeight: "bold", marginBottom: 30 }}>
+          <Text style={styles.title}>
             {t('register.createAccount')}
           </Text>
 
           <View style={styles.inputContainer}>
             <TextInput
               placeholder={t('register.fullnamePlaceholder')}
+              placeholderTextColor={theme.colors.text}
               style={styles.input}
               onChangeText={(text) => setFullname(text)}
               value={fullname}
             />
             <TextInput
               placeholder={t('register.emailPlaceholder')}
+              placeholderTextColor={theme.colors.text}
               style={styles.input}
               onChangeText={(text) => setEmail(text)}
               value={email}
@@ -111,12 +118,14 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder={t('register.usernamePlaceholder')}
+              placeholderTextColor={theme.colors.text}
               style={styles.input}
               onChangeText={(text) => setUsername(text)}
               value={username}
             />
             <TextInput
               placeholder={t('register.passwordPlaceholder')}
+              placeholderTextColor={theme.colors.text}
               style={styles.input}
               onChangeText={(text) => setPassword(text)}
               value={password}
@@ -124,6 +133,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder={t('register.phonePlaceholder')}
+              placeholderTextColor={theme.colors.text}
               style={styles.input}
               onChangeText={(text) => setPhone(text)}
               value={phone}
@@ -131,6 +141,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
               placeholder={t('register.addressPlaceholder')}
+              placeholderTextColor={theme.colors.text}
               style={styles.input}
               onChangeText={(text) => setAddress(text)}
               value={address}
@@ -152,7 +163,7 @@ const Register = ({ navigation }) => {
             style={styles.signInLink}
             onPress={() => navigation.navigate("Login")}
           >
-            <Text>{t('register.alreadyHaveAccount')} </Text>
+            <Text style={{color: theme.colors.text}}>{t('register.alreadyHaveAccount')} </Text>
             <Text style={styles.linkText}>{t('register.loginNow')}</Text>
           </TouchableOpacity>
         </View>
@@ -161,57 +172,66 @@ const Register = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-  },
-  innerContainer: {
-    alignItems: "center",
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-  },
-  inputContainer: {
-    width: "80%",
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    width: 350,
-    borderRadius: 10,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingLeft: 10,
-    marginTop: 10,
-  },
-  errorText: {
-    color: "red",
-    marginBottom: 10,
-  },
-  registerButton: {
-    backgroundColor: "#35C2C1",
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  signInLink: {
-    flexDirection: "row",
-    marginTop: 60,
-  },
-  linkText: {
-    color: "#35C2C1",
-  },
-});
+const getStyles = (theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: theme.colors.background,
+    },
+    innerContainer: {
+      alignItems: "center",
+    },
+    logo: {
+      width: 100,
+      height: 100,
+      marginBottom: 20,
+    },
+    title: {
+      fontSize: 25,
+      fontWeight: "bold",
+      marginBottom: 30,
+      color: theme.colors.text,
+    },
+    inputContainer: {
+      width: "80%",
+      marginBottom: 20,
+    },
+    input: {
+      height: 40,
+      width: 350,
+      borderRadius: 10,
+      borderColor: theme.colors.border,
+      borderWidth: 1,
+      marginBottom: 10,
+      paddingLeft: 10,
+      marginTop: 10,
+      backgroundColor: theme.colors.inputBackground,
+      color: theme.colors.text,
+    },
+    errorText: {
+      color: "red",
+      marginBottom: 10,
+    },
+    registerButton: {
+      backgroundColor: theme.colors.cart,
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+    },
+    buttonText: {
+      color: "white",
+      fontSize: 18,
+      fontWeight: "bold",
+    },
+    signInLink: {
+      flexDirection: "row",
+      marginTop: 60,
+    },
+    linkText: {
+      color: "#35C2C1",
+    },
+  });
 
 export default Register;

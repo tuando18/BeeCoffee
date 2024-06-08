@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
@@ -8,6 +8,7 @@ import cash from '../../assets/cash.jpeg';
 import bankTransfer from '../../assets/bankTransfer.jpeg';
 import apiUrl from "../../apiUrl";
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../theme/ThemeContext'; // Import ThemeContext
 
 const url_api_orders = "http://" + apiUrl.tuan + ":3000/orders";
 
@@ -15,6 +16,7 @@ const url_cart_del = "http://" + apiUrl.tuan + ":3000/cart/";
 
 const Order = ({ navigation }) => {
   const { t } = useTranslation('order');
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
 
   const route = useRoute();
   const { money, data } = route.params || {};
@@ -83,46 +85,46 @@ const Order = ({ navigation }) => {
 
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
         <TouchableOpacity onPress={handleBackPress}>
-          <Ionicons name="arrow-back" style={{ marginStart: 20 }} size={24} color="#000" />
+          <Ionicons name="arrow-back" style={{ marginStart: 20 }} size={24} color={theme.colors.text} />
         </TouchableOpacity>
-        <Text style={styles.heading}>{t('order.heading')}</Text>
+        <Text style={[styles.heading, { color: theme.colors.text }]}>{t('order.heading')}</Text>
       </View>
       <TouchableOpacity
-        style={styles.paymentButton}
+        style={[styles.paymentButton, ]}
         onPress={() => handlePaymentMethod('Debit Card')}
       >
         <Image source={card} style={styles.image} />
-        <Text style={styles.buttonText}>{t('order.debitCard')}</Text>
-        <Ionicons name="arrow-forward" size={24} color="#000" />
+        <Text style={[styles.buttonText, { color: theme.colors.text }]}>{t('order.debitCard')}</Text>
+        <Ionicons name="arrow-forward" size={24} color={theme.colors.text} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.paymentButton}
         onPress={() => handlePaymentMethod('Cash')}
       >
         <Image source={cash} style={styles.icon} />
-        <Text style={styles.buttonText}>{t('order.cash')}</Text>
-        <Ionicons name="arrow-forward" size={24} color="#000" />
+        <Text style={[styles.buttonText, { color: theme.colors.text }]}>{t('order.cash')}</Text>
+        <Ionicons name="arrow-forward" size={24} color={theme.colors.text} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.paymentButton}
         onPress={() => handlePaymentMethod('Bank Transfer')}
       >
         <Image source={bankTransfer} style={styles.icon} />
-        <Text style={styles.buttonText}>{t('order.bankTransfer')}</Text>
-        <Ionicons name="arrow-forward" size={24} color="#000" />
+        <Text style={[styles.buttonText, { color: theme.colors.text }]}>{t('order.bankTransfer')}</Text>
+        <Ionicons name="arrow-forward" size={24} color={theme.colors.text} />
       </TouchableOpacity>
 
       {/* Thêm dòng mới cho giá và nút Pay */}
-      <View style={styles.bottomRow}>
-        <Text style={styles.totalText}>{t('order.total')} ${money}</Text>
+      <View style={[styles.bottomRow, { backgroundColor: theme.colors.background }]}>
+        <Text style={[styles.totalText, { color: theme.colors.text }]}>{t('order.total')} ${money}</Text>
         <TouchableOpacity
           style={styles.payButton}
           onPress={hanldlePayment}
         >
-          <Text style={styles.payButtonText}>{t('order.pay')} {paymentsBtn}</Text>
+          <Text style={[styles.payButtonText, { color: theme.colors.text }]}>{t('order.pay')} {paymentsBtn}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -132,7 +134,6 @@ const Order = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
   header: {
     flexDirection: 'row',
@@ -141,12 +142,11 @@ const styles = StyleSheet.create({
     marginTop: 70,
   },
   heading: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     marginLeft: 30,
   },
   paymentButton: {
-    backgroundColor: '#fff',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   buttonText: {
-    color: '#000',
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -182,20 +181,17 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopWidth: 1,
     borderTopColor: 'black',
-    backgroundColor: '#fff',
   },
   totalText: {
     fontSize: 18,
     fontWeight: 'bold',
   },
   payButton: {
-    backgroundColor: '#fff',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
   },
   payButtonText: {
-    color: '#000',
     fontSize: 18,
     fontWeight: 'bold',
   },

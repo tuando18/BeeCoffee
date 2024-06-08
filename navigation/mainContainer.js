@@ -19,6 +19,7 @@ import OrderDetail from "../screen/orderdetail";
 import Languages from "../screen/languages";
 
 import { useTranslation } from 'react-i18next';
+import SomeScreen from "../screen/theme/SomeScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -101,6 +102,11 @@ const MainScreen = ({ navigation }) => {
       <Tab.Screen
         name="Languages"
         component={Languages}
+        options={{ tabBarButton: () => null, headerShown: false }}
+      />
+      <Tab.Screen
+        name="Theme"
+        component={SomeScreen}
         options={{ tabBarButton: () => null, headerShown: false }}
       />
     </Tab.Navigator>

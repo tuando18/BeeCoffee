@@ -6,6 +6,7 @@
       "paymentMethod": "Payment Method",
       "languages": "Languages",
       "help": "Help",
+      "theme": "Theme",
       "logout": "Log out"
     }
   }

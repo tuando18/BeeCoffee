@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,7 +12,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import styles from "./style";
+import getStylesLogin from "../login/style";
+import { ThemeContext } from "../theme/ThemeContext";
 
 import logo from "../../assets/logo.png";
 import apiUrl from "../../apiUrl";
@@ -28,6 +29,8 @@ const Login = ({ navigation }) => {
   let nameUser = "name";
 
   const { t } = useTranslation('login');
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
+  const styles = getStylesLogin(theme); // Apply styles based on the theme
 
   useEffect(() => {
     getDatafromAPI();
@@ -81,21 +84,23 @@ const Login = ({ navigation }) => {
       >
         <View style={styles.innerContainer}>
           <Image style={styles.anh} source={logo} />
-          <Text style={{ fontSize: 22, fontWeight: "bold" }}>
+          <Text style={{ fontSize: 22, fontWeight: "bold", color: theme.colors.text}}>
             {t('login.welcome')}
           </Text>
-          <Text style={{ fontSize: 19, marginTop: 10, marginBottom: 30 }}>
+          <Text style={{ fontSize: 19, marginTop: 10, marginBottom: 30, color: theme.colors.text }}>
           {t('login.loginToContinue')}
           </Text>
 
           <TextInput
             placeholder={t('login.username')}
+            placeholderTextColor={theme.colors.text}
             style={styles.input}
             onChangeText={(text) => setUsername(text)}
             value={username}
           />
           <TextInput
             placeholder={t('login.password')}
+            placeholderTextColor={theme.colors.text}
             style={styles.input}
             onChangeText={(text) => setPassword(text)}
             value={password}
@@ -121,11 +126,11 @@ const Login = ({ navigation }) => {
               setErrorMessage("");
             }}
           >
-            <Text>{t('login.dontHaveAccount')}</Text>
+            <Text style={{color: theme.colors.text}}>{t('login.dontHaveAccount')}</Text>
             <Text style={{ color: "#35C2C1" }}> {t('login.registerNow')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ flexDirection: "row", marginTop: 10 }}>
-            <Text>{t('login.forgotPassword')}</Text>
+            <Text style={{color: theme.colors.text}}>{t('login.forgotPassword')}</Text>
             <Text style={{ color: "#35C2C1" }}> {t('login.forgotPassword')}</Text>
           </TouchableOpacity>
         </View>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   View,
   Image,
@@ -9,14 +9,18 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "./style";
+import getStyles from "./style";
 import avatar1 from "../../assets/avt.jpeg";
 import { useRoute } from "@react-navigation/native";
 import apiUrl from "../../apiUrl";
+import { ThemeContext } from "../theme/ThemeContext";
 
 import { useTranslation } from 'react-i18next'
 
 const Home = ({ navigation }) => {
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
+  const styles = getStyles(theme); // Apply styles based on the theme
+
   const url_Category = "http://" + apiUrl.tuan + ":3000/category";
   const url_Product = "http://" + apiUrl.tuan + ":3000/products";
 
@@ -120,11 +124,12 @@ const Home = ({ navigation }) => {
               fontSize: 17,
               marginStart: 12,
               fontWeight: "bold",
+              color: theme.colors.text,
             }}
           >
             {item.nameProduct}
           </Text>
-          <Text style={{ fontSize: 10, marginTop: 7, marginStart: 13 }}>
+          <Text style={{ fontSize: 10, marginTop: 7, marginStart: 13, color: theme.colors.text, }}>
             {item.description}
           </Text>
           <Text
@@ -133,6 +138,7 @@ const Home = ({ navigation }) => {
               fontSize: 17,
               marginStart: 12,
               fontWeight: "bold",
+              color: theme.colors.text,
             }}
           >
             ${item.price}
@@ -177,7 +183,7 @@ const Home = ({ navigation }) => {
       }}
     >
       <Image source={{ uri: item.image }} style={styles.imgOffer} />
-      <Text style={{ alignSelf: "center", fontSize: 19, width: "50%" }}>
+      <Text style={{ alignSelf: "center", fontSize: 19, width: "50%", color: theme.colors.text, }}>
         {item.description}
       </Text>
     </TouchableOpacity>
@@ -191,7 +197,7 @@ const Home = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <Image style={styles.avt} source={avatar1} />
             </TouchableOpacity>
-            <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 20, marginTop: 10, fontWeight: "bold", color: theme.colors.text }}>
               {" "}
               {t('home.wel')} {nameUserSend}{" "}
             </Text>
@@ -203,7 +209,7 @@ const Home = ({ navigation }) => {
             <Ionicons
               name="cart"
               size={30}
-              color="#055E38"
+              color={theme.colors.cart}
               style={styles.cartIcons}
             />
           </TouchableOpacity>
@@ -211,12 +217,13 @@ const Home = ({ navigation }) => {
         <View style={styles.search}>
           <TextInput
             placeholder={t('home.search')}
+            placeholderTextColor={theme.colors.text}
             style={styles.input}
             value={searchQuery}
             onChangeText={setSearchQuery}
           />
         </View>
-        <Text style={{ fontSize: 25, fontWeight: "bold" }}>{t('home.category')}</Text>
+        <Text style={{ fontSize: 25, fontWeight: "bold", color: theme.colors.text }}>{t('home.category')}</Text>
         <FlatList
           horizontal
           data={category}
