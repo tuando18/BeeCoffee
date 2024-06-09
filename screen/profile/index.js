@@ -62,7 +62,7 @@ const ProfileForm = ({ navigation }) => {
       />
 
       <TouchableOpacity style={[styles.saveButton, { backgroundColor: theme.colors.buttonText1 }]} onPress={handleSave}>
-        <Text style={[styles.saveButtonText, { color: theme.colors.text2 }]}>{t('profile.btn')}</Text>
+        <Text style={[styles.saveButtonText, { color: theme.colors.text }]}>{t('profile.btn')}</Text>
       </TouchableOpacity>
     </View>
   );

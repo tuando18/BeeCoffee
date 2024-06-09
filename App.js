@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-
+import './i18n/i18n.js';
 import LoginScreen from './screen/login';
 import RegisterScreen from './screen/signIn';
 import MainScreen from './navigation/mainContainer';
