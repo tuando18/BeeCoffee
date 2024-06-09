@@ -308,6 +308,29 @@
         "category": 1
       },
       "id": "58b2"
+    },
+    {
+      "0": {
+        "id": "9c10",
+        "size": "small",
+        "price": 4.5,
+        "nameProduct": "cappuccino cream",
+        "description": "Smooth and creamy cappuccino",
+        "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+        "quantity": 1,
+        "category": 1
+      },
+      "1": {
+        "id": "c47b",
+        "size": "small",
+        "price": 4.5,
+        "nameProduct": "cappuccino cream",
+        "description": "Smooth and creamy cappuccino",
+        "image": "https://classiccoffee.com.vn/files/common/the-nao-la-ly-ca-phe-capuchino-ngon-chuan-vi-7nvpe.png",
+        "quantity": 1,
+        "category": 1
+      },
+      "id": "e927"
     }
   ],
   "contacts": [
