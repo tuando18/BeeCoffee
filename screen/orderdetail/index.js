@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
     View, Text, FlatList, StyleSheet, Image, TextInput,
     ActivityIndicator, RefreshControl, TouchableOpacity
 } from 'react-native';
 import apiUrl from "../../apiUrl";
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../theme/ThemeContext'; // Import ThemeContext
 
 const url_orders = `http://${apiUrl.tuan}:3000/orders/`;
 const url_categories = `http://${apiUrl.tuan}:3000/category/`;
@@ -18,7 +19,9 @@ const OrderDetail = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [flatListKey, setFlatListKey] = useState(0);
+
     const { t } = useTranslation('orderdetail');
+    const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
 
     useEffect(() => {
         getOrdersfromAPI();
@@ -89,13 +92,13 @@ const OrderDetail = () => {
     };
 
     const renderItem = ({ item }) => (
-        <View style={styles.productContainer}>
+        <View style={[styles.productContainer, { backgroundColor: theme.colors.card }]}>
             <Image source={{ uri: item.image }} style={styles.image} />
             <View style={styles.productDetails}>
-                <Text style={styles.text}>{t('orderDetail.idProduct')} {item.id}</Text>
-                <Text style={styles.text}>{t('orderDetail.productName')} {item.nameProduct}</Text>
-                <Text style={styles.text}>{t('orderDetail.price')} ${item.price}</Text>
-                <Text style={styles.text}>{t('orderDetail.quantity')} {item.quantity}</Text>
+                <Text style={[styles.text, { color: theme.colors.text }]}>{t('orderDetail.idProduct')} {item.id}</Text>
+                <Text style={[styles.text, { color: theme.colors.text }]}>{t('orderDetail.productName')} {item.nameProduct}</Text>
+                <Text style={[styles.text, { color: theme.colors.text }]}>{t('orderDetail.price')} ${item.price}</Text>
+                <Text style={[styles.text, { color: theme.colors.text }]}>{t('orderDetail.quantity')} {item.quantity}</Text>
             </View>
         </View>
     );
@@ -106,9 +109,10 @@ const OrderDetail = () => {
                 style={[
                     styles.categoryButton,
                     selectedCategory === item.id && styles.selectedCategoryButton,
+                    selectedCategory === item.id && { backgroundColor: theme.colors.text }
                 ]}
             >
-                <Text style={selectedCategory === item.id ? styles.selectedCategoryText : styles.categoryText}>{item.nameCategory}</Text>
+                <Text style={selectedCategory === item.id ? [styles.selectedCategoryText, { color: theme.colors.text2 }] : [styles.categoryText, { color: theme.colors.text }]}>{item.nameCategory}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -119,10 +123,11 @@ const OrderDetail = () => {
                 style={[
                     styles.categoryButton,
                     selectedCategory === null && styles.selectedCategoryButton,
+                    selectedCategory === null && { backgroundColor: theme.colors.text }
                 ]}
                 onPress={() => handleCategorySelect(null)}
             >
-                <Text style={selectedCategory === null ? styles.selectedCategoryText : styles.categoryText}>All</Text>
+                <Text style={selectedCategory === null ? [styles.selectedCategoryText, { color: theme.colors.text2 }] : [styles.categoryText, { color: theme.colors.text }]}>All</Text>
             </TouchableOpacity>
             <FlatList
                 horizontal
@@ -134,19 +139,20 @@ const OrderDetail = () => {
     );
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>{t('orderDetail.header')}</Text>
+        <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+            <Text style={[styles.header, { color: theme.colors.text }]}>{t('orderDetail.header')}</Text>
             <View style={styles.search}>
                 <TextInput
                     placeholder={t('orderDetail.searchPlaceholder')}
-                    style={styles.input}
+                    placeholderTextColor={theme.colors.text}
+                    style={[styles.input, { backgroundColor: theme.colors.card, color: theme.colors.text, borderColor: theme.colors.border }]}
                     value={searchQuery}
                     onChangeText={setSearchQuery}
                 />
             </View>
             <CategoryFilter />
             {loading ? (
-                <ActivityIndicator size="large" color="#0000ff" />
+                <ActivityIndicator size="large" color={theme.colors.primary} />
             ) : (
                 <FlatList
                     key={flatListKey}
@@ -157,6 +163,7 @@ const OrderDetail = () => {
                         <RefreshControl
                             refreshing={refreshing}
                             onRefresh={onRefresh}
+                            colors={[theme.colors.primary]}
                         />
                     }
                 />
@@ -169,7 +176,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#fff',
     },
     header: {
         fontSize: 20,
@@ -179,9 +185,7 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         height: 44,
-        backgroundColor: "#fff",
         borderWidth: 1,
-        borderColor: "black",
         borderRadius: 20,
         paddingHorizontal: 20,
         paddingVertical: 10,
@@ -193,6 +197,8 @@ const styles = StyleSheet.create({
     productContainer: {
         flexDirection: 'row',
         marginBottom: 20,
+        padding: 10,
+        borderRadius: 10,
     },
     image: {
         width: 100,
@@ -211,7 +217,6 @@ const styles = StyleSheet.create({
     },
     categoryButton: {
         padding: 10,
-        backgroundColor: '#ddd',
         borderRadius: 10,
         marginRight: 10,
     },

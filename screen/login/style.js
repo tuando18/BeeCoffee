@@ -1,11 +1,12 @@
 import {StyleSheet} from 'react-native'
 
-const styles = StyleSheet.create({
+const getStylesLogin = (theme) =>
+  StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white'
+      backgroundColor: theme.colors.background, // Thêm backgroundColor
     },
     innerContainer: {
       width: '80%',
@@ -19,13 +20,20 @@ const styles = StyleSheet.create({
     input: {
       width: '100%',
       height: 44,
-      backgroundColor: '#fff',
+      borderRadius: 20,
+      marginTop: 20,
+      backgroundColor: theme.colors.card,
       borderWidth: 1,
-      borderColor: 'black',
+      borderColor: theme.colors.border,
       borderRadius: 20,
       paddingHorizontal: 20,
       paddingVertical: 10,
-      marginTop: 20,
+      alignSelf: "center",
+      justifyContent: "center",
+      alignItems: "center",
+      alignContent: "center",
+      marginVertical: 20,
+      color: theme.colors.text, // Set text color
     },
     loginButton: {
       backgroundColor: '#7A4723',
@@ -45,4 +53,4 @@ const styles = StyleSheet.create({
     },
   });
   
-  export default styles;
+  export default getStylesLogin;

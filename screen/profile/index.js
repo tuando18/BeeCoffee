@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -8,13 +8,15 @@ import {
   Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
+import { ThemeContext } from "../theme/ThemeContext"; // Import ThemeContext
 
 const ProfileForm = ({ navigation }) => {
   const [name, setName] = useState("kmt");
   const [email, setEmail] = useState("123g@fpt.edu.vn");
   const [phoneNumber, setPhoneNumber] = useState("123-456-7890");
   const { t } = useTranslation('profile');
+  const { theme } = useContext(ThemeContext); // Use theme from ThemeContext
 
   const handleSave = () => {
     console.log("Name:", name);
@@ -23,41 +25,44 @@ const ProfileForm = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.header}>
         <TouchableOpacity
           style={{ marginTop: 50 }}
           onPress={() => navigation.goBack()}
         >
-          <Ionicons name="arrow-back" size={24} color="#000" />
+          <Ionicons name="arrow-back" size={24} color={theme.colors.text} />
         </TouchableOpacity>
-        <Text style={styles.heading}>{t('profile.heading')}</Text>
+        <Text style={[styles.heading, { color: theme.colors.text }]}>{t('profile.heading')}</Text>
       </View>
       <Image style={styles.avatar} source={require("../../assets/avt.jpeg")} />
 
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: theme.colors.border, color: theme.colors.text }]}
         placeholder="Enter your name"
+        placeholderTextColor={theme.colors.placeholder}
         value={name}
         onChangeText={(text) => setName(text)}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: theme.colors.border, color: theme.colors.text }]}
         placeholder="Enter your email"
+        placeholderTextColor={theme.colors.placeholder}
         keyboardType="email-address"
         value={email}
         onChangeText={(text) => setEmail(text)}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: theme.colors.border, color: theme.colors.text }]}
         placeholder="Enter your phone number"
+        placeholderTextColor={theme.colors.placeholder}
         keyboardType="phone-pad"
         value={phoneNumber}
         onChangeText={(text) => setPhoneNumber(text)}
       />
 
-      <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-        <Text style={styles.saveButtonText}>{t('profile.btn')}</Text>
+      <TouchableOpacity style={[styles.saveButton, { backgroundColor: theme.colors.buttonText1 }]} onPress={handleSave}>
+        <Text style={[styles.saveButtonText, { color: theme.colors.text }]}>{t('profile.btn')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,7 +71,6 @@ const ProfileForm = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     paddingHorizontal: 20,
   },
   header: {
@@ -80,7 +84,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginLeft: 40,
-    color: "#000",
   },
   avatar: {
     width: 100,
@@ -91,21 +94,18 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: "gray",
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
     width: "100%",
   },
   saveButton: {
-    backgroundColor: "#000",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
     width: "100%",
   },
   saveButtonText: {
-    color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
   },
