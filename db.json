@@ -2,51 +2,9 @@
   "users": [
     {
       "id": "1",
-      "username": "Thang1",
-      "name": "Thăng",
+      "username": "tuan1",
+      "name": "Tuấn",
       "password": "123"
-    },
-    {
-      "id": "2",
-      "username": "Thang2",
-      "password": "123",
-      "name": "Thăng Hoàng"
-    },
-    {
-      "id": "03ed",
-      "username": "2",
-      "password": "2",
-      "name": "2",
-      "email": "Thang@gmail.com",
-      "phone": "2",
-      "address": "2"
-    },
-    {
-      "id": "9c0a",
-      "username": "Gg",
-      "password": "gg",
-      "name": "Chien",
-      "email": "Chien@gg.gg",
-      "phone": "gg",
-      "address": "Gg"
-    },
-    {
-      "id": "d5b4",
-      "username": "Qq",
-      "password": "qq",
-      "name": "Qq",
-      "email": "Qq@qq.qq",
-      "phone": "0123456789",
-      "address": "Qq"
-    },
-    {
-      "id": "d67f",
-      "username": "123123",
-      "password": "123123",
-      "name": "123123",
-      "email": "Tt@tt.tt",
-      "phone": "0123456789",
-      "address": "123123"
     },
     {
       "id": "32e2",
@@ -56,15 +14,6 @@
       "email": "tuandvph31763@fpt.edu.vn",
       "phone": "0326117315",
       "address": "Ha Noi"
-    },
-    {
-      "id": "51a8",
-      "username": "tung123",
-      "password": "123",
-      "name": "Trần Ngọc Tùng",
-      "email": "tungdz123@gmail.com",
-      "phone": "0326117315",
-      "address": "HaNoi"
     }
   ],
   "products": [
